@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -41,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
                                     "Elder D. Todd Christofferson","Elder Neil L. Andersen","Elder Ronald A. Rasband","Elder Gary E. Stevenson",
                                     "Elder Dale G. Renlund","Elder Gerrit W. Gong","Elder Ulisses Soares"};
 
-    public int [] randomMatirix = new int[14];
-    public int [] boardArray = new int[41];
+    public int [] randomMatirix = new int[15];
+    public int [] boardArray = new int[42];
 
     Random rand = new Random();
     BeginningFades _beginningFade;
@@ -53,13 +54,15 @@ public class MainActivity extends AppCompatActivity {
         _disPlayerOne.setText(_setPlayers.getPlayer1());
         _disPlayerTwo.setText(_setPlayers.getplayer2());
         _showPlayers.setVisibility(View.VISIBLE);
-        //_boardGL.setVisibility(View.VISIBLE);
+        _boardGL.setVisibility(View.VISIBLE);
     }
 
     public void seedBoard(View view){
         int _rand;
         boolean completed = false;
-
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT,FrameLayout.LayoutParams.WRAP_CONTENT);
+        params.leftMargin = 33;
+        params.topMargin = 23;
         _createdByL.setVisibility(View.GONE);
         for(int x = 0; x < 14; x++){
             randomMatirix[x] = 0;
@@ -82,7 +85,8 @@ public class MainActivity extends AppCompatActivity {
         for(int x = 0; x < redCounters.length; x++){
             redCounters[x] = new ImageView(this);
             redCounters[x].setImageResource(R.drawable.reddot);
-            redCounters[x].setVisibility(View.GONE);
+            redCounters[x].setVisibility(View.VISIBLE);
+            redCounters[x].setLayoutParams(params);
             _boardGL.addView(redCounters[x]);
         }
 
