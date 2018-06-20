@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         for(int x = 0; x < 41; x++){
 
             do {
-                _rand = rand.nextInt(14);
+                _rand = rand.nextInt(15);
                 if (randomMatirix[_rand] != 2) {
                     randomMatirix[_rand]++;
                     boardArray[x] = _rand;
