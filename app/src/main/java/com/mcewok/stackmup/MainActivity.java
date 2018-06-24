@@ -2,6 +2,7 @@ package com.mcewok.stackmup;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,7 +37,9 @@ public class MainActivity extends AppCompatActivity {
     public SetPlayers _setPlayers;
     public ImageView[] redCounters = new ImageView[42];
     public ImageView[] yellowCounters = new ImageView[42];
+    FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT,FrameLayout.LayoutParams.WRAP_CONTENT);
     public String player;
+    public ImageView tile;
     public String[] apostleNames = {"President Russell M. Nelson","President Dallin H. Oaks","President Henry B. Eying","Elder M. Russell Ballard",
                                     "Elder Jeffrey R. Holland","Elder Dieter F. Uchtdorf","Elder David A. Bednar","Elder Quentin L. Cook",
                                     "Elder D. Todd Christofferson","Elder Neil L. Andersen","Elder Ronald A. Rasband","Elder Gary E. Stevenson",
@@ -57,10 +60,19 @@ public class MainActivity extends AppCompatActivity {
         _boardGL.setVisibility(View.VISIBLE);
     }
 
+    public void setTile(ImageView _tile, int resource){
+        _tile = new ImageView(this);
+        _tile.setImageResource(resource);
+        _tile.setVisibility(View.VISIBLE);
+        _tile.setLayoutParams(params);
+        _boardGL.addView(_tile);
+    }
+
     public void seedBoard(View view){
         int _rand;
         boolean completed = false;
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT,FrameLayout.LayoutParams.WRAP_CONTENT);
+        params.width = 100;
+        params.height = 100;
         params.leftMargin = 33;
         params.topMargin = 23;
         _createdByL.setVisibility(View.GONE);
@@ -82,10 +94,57 @@ public class MainActivity extends AppCompatActivity {
             } while (completed = false);
         }
 
+        for(int x = 0; x < boardArray.length; x++){
+            switch(boardArray[x]){
+                case 0:
+                    setTile(tile,R.drawable.andersen);
+                    break;
+                case 1:
+                    setTile(tile,R.drawable.ballard);
+                    break;
+                case 2:
+                    setTile(tile,R.drawable.bednar);
+                    break;
+                case 3:
+                    setTile(tile,R.drawable.christofferson);
+                    break;
+                case 4:
+                    setTile(tile,R.drawable.cook);
+                    break;
+                case 5:
+                    setTile(tile,R.drawable.eyring);
+                    break;
+                case 6:
+                    setTile(tile,R.drawable.hales);
+                    break;
+                case 7:
+                    setTile(tile,R.drawable.holland);
+                    break;
+                case 8:
+                    setTile(tile,R.drawable.nelson);
+                    break;
+                case 9:
+                    setTile(tile,R.drawable.oaks);
+                    break;
+                case 10:
+                    setTile(tile,R.drawable.rasband);
+                    break;
+                case 11:
+                    setTile(tile,R.drawable.renlund);
+                    break;
+                case 12:
+                    setTile(tile,R.drawable.stevenson);
+                    break;
+                case 13:
+                    setTile(tile,R.drawable.uchtdorf);
+                    break;
+            }
+        }
+
         for(int x = 0; x < redCounters.length; x++){
             redCounters[x] = new ImageView(this);
             redCounters[x].setImageResource(R.drawable.reddot);
-            redCounters[x].setVisibility(View.VISIBLE);
+            redCounters[x].setVisibility(View.GONE);
             redCounters[x].setLayoutParams(params);
             _boardGL.addView(redCounters[x]);
         }
